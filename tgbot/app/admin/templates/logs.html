@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Логи действий</title>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            font-size: 15px;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            padding: 12px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+            background: #fff;
+        }
+
+        tr:hover td {
+            background: #f6f6f6;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f3f3f3;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Логи действий</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Telegram ID</th>
+            <th>Действие</th>
+            <th>Детали</th>
+            <th>Дата (МСК)</th>
+        </tr>
+
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.id }}</td>
+            <td>{{ log.name }}</td>
+            <td>{{ log.tg_id }}</td>
+            <td>{{ log.action }}</td>
+            <td>{{ log.details }}</td>
+            <td>{{ log.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

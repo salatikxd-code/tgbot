@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card shadow-sm p-4">
+    <h2 class="mb-3">Статус системы</h2>
+
+    <p class="fs-5">
+        Статус сайта:
+        {% if status == "on" %}
+            <span class="badge bg-success">ON</span>
+        {% elif status == "off" %}
+            <span class="badge bg-danger">OFF</span>
+        {% else %}
+            <span class="badge bg-secondary">unknown</span>
+        {% endif %}
+    </p>
+</div>
+
+{% endblock %}

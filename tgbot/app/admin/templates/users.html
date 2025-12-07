@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<a href="/admin" class="btn btn-secondary mb-3">← Назад</a>
+
+<div class="card shadow-sm p-4 mb-4">
+    <h2 class="mb-4">Пользователи</h2>
+
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>TG ID</th>
+                <th>Роль</th>
+                <th style="width: 220px;">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.name }}</td>
+                <td>{{ u.telegram_id }}</td>
+                <td>
+                    <span class="badge bg-primary">{{ u.role.value }}</span>
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="/admin/users/edit/{{ u.id }}">✏ Редактировать</a>
+                    <a class="btn btn-sm btn-danger" href="/admin/users/delete/{{ u.id }}">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<div class="card shadow-sm p-4">
+    <h3 class="mb-3">Добавить пользователя</h3>
+
+    <form method="post" action="/admin/users/add" class="w-50">
+
+        <div class="mb-3">
+            <label class="form-label">Имя</label>
+            <input class="form-control" type="text" name="name" placeholder="Имя" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Telegram ID</label>
+            <input class="form-control" type="text" name="tg_id" placeholder="Telegram ID" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Роль</label>
+            <select class="form-select" name="role">
+                <option value="admin">admin</option>
+                <option value="notifier">notifier</option>
+                <option value="user">user</option>
+                <option value="guest">guest</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+</div>
+
+{% endblock %}

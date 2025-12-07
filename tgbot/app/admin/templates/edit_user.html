@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя</title>
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+
+<header>Админ-панель — Редактирование пользователя</header>
+
+<div class="container">
+
+<a class="button" href="/admin/users">← Назад</a>
+
+<h1>Редактировать пользователя</h1>
+
+<form method="post">
+
+    <label>Имя</label><br>
+    <input type="text" name="name" value="{{ user.name }}" required><br>
+
+    <label>Telegram ID</label><br>
+    <input type="text" name="tg_id" value="{{ user.telegram_id }}" required><br>
+
+    <label>Роль</label><br>
+    <select name="role">
+        <option value="admin" {% if user.role.value=='admin' %}selected{% endif %}>admin</option>
+        <option value="notifier" {% if user.role.value=='notifier' %}selected{% endif %}>notifier</option>
+        <option value="user" {% if user.role.value=='user' %}selected{% endif %}>user</option>
+        <option value="guest" {% if user.role.value=='guest' %}selected{% endif %}>guest</option>
+    </select><br>
+
+    <button type="submit">Сохранить</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
